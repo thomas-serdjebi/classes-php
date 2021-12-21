@@ -58,6 +58,20 @@ class User {
         echo "Déconnecté.";
         
     }
+
+    // DELETE
+
+    public function delete() {
+        $delete =  "DELETE FROM utilisateurs WHERE login='".$_SESSION['login']."'";
+
+        if (mysqli_query($this->connexion, $delete)) {
+            session_destroy();
+            echo "Compte supprimé.";
+        }
+
+    }
+
+    
 }
 
 

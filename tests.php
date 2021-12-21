@@ -14,10 +14,16 @@ if (isset($_POST['connexion'])) {
     
 }
 
-if (isset($_POST['delete'])) {
+if (isset($_POST['disconnect'])) {
 
     $delete_user = new User();
     $delete_user->disconnect();
+}
+
+if (isset($_POST['delete'])) {
+
+    $delete_user = new User();
+    $delete_user->delete();
 }
 
 
@@ -33,9 +39,14 @@ if (isset($_POST['delete'])) {
     </form>
 
 
+    <!-- TEST DISCONNECT -->
+    <form action="tests.php" method="post">
+        <input type="submit" name="disconnect" value="deconnexion" >
+    </form>
+
     <!-- TEST DELETE -->
     <form action="tests.php" method="post">
-        <input type="submit" name="delete" value="deconnexion" >
+        <input type="submit" name="delete" value="delete">
     </form>
 
 </html>
