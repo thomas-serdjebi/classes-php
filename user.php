@@ -26,8 +26,6 @@ class User {
 
     //CONNECT
 
-    
-
     public function connect($login, $password) {
 
         $login = $_POST['login'];
@@ -45,15 +43,21 @@ class User {
             $this->firstname =$assoc['firstname'] ;
             $this->lastname = $assoc['lastname'];
             echo "connecté";
-            echo $this->lastname;
+            echo $_SESSION['login'];
 
         }
 
-        else  {echo "erreur" ; }
+        else  {echo "Erreur, le login ou le mot de passe est incorrect." ; }
+
     }
 
+    // DISCONNECT
 
-    
+    public function disconnect(){
+        session_destroy();
+        echo "Déconnecté.";
+        
+    }
 }
 
 
