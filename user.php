@@ -1,6 +1,7 @@
 <?php
 
 class User {
+
     private $id;
     public $login;
     public $email;
@@ -10,6 +11,7 @@ class User {
 
     //déclaration des méthodes
     public function __construct () {
+
         $conn = mysqli_connect('localhost', 'root', '', 'classes');
         $this->connexion=$conn;
     }
@@ -17,6 +19,7 @@ class User {
     //REGISTER
 
     public function register($login, $password, $email, $firstname, $lastname) {
+
         $req = mysqli_query($this->connexion, "INSERT INTO utilisateurs (login, password, email, firstname, lastname) VALUES ( '$login', '$password','$email', '$firstname', '$lastname')");
         $select = mysqli_query($this->connexion, " SELECT * from utilisateurs WHERE login = '$login'");
         $fetch = mysqli_fetch_assoc($select);
@@ -53,22 +56,29 @@ class User {
 
     // DISCONNECT
 
-    public function disconnect(){
-        session_destroy();
-        echo "Déconnecté.";
+    public function disconnect() {
+
+        session_destroy() ;
+        echo "Déconnecté." ;
         
     }
 
     // DELETE
 
     public function delete() {
+
         $delete =  "DELETE FROM utilisateurs WHERE login='".$_SESSION['login']."'";
 
         if (mysqli_query($this->connexion, $delete)) {
             session_destroy();
             echo "Compte supprimé.";
         }
+    }
 
+    public function update($login, $password, $email, $firstname, $lastname) {
+        
+        $update = "UPDATE utilisateurs SET login='$login', password='$password', email='$email', firstname='$firstname', lastname='$lastname' WHERE login='".$_SESSION['login']."'";
+        $query = mysqli_query($this->connexion, $update);
     }
 
     
