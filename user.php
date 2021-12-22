@@ -81,6 +81,56 @@ class User {
         $query = mysqli_query($this->connexion, $update);
     }
 
+    public function isConnected() {
+
+        if ($this->login == true ) {
+            return true;
+        }       
+        else { return false;} 
+    }
+
+    public function getAllInfos() {
+
+
+        $select = mysqli_query($this->connexion, "SELECT * FROM utilisateurs WHERE login='".$_SESSION['login']."' ");
+
+        $assoc = mysqli_fetch_assoc($select);
+
+        return $assoc;
+    }
+
+    public function getLogin(){
+        $login = mysqli_query($this->connexion, "SELECT login FROM utilisateurs WHERE login ='".$_SESSION['login']."'");
+        $assoc = mysqli_fetch_assoc($login);
+        echo $assoc['login'];
+        return $assoc['login'];
+
+    }
+
+    public function getEmail(){
+        $email = mysqli_query($this->connexion, "SELECT email FROM utilisateurs WHERE login = '".$_SESSION['login']."'");
+        $assoc = mysqli_fetch_assoc($email);
+        echo $assoc['email'];
+        return $assoc['email'];
+        
+    }
+
+    public function getFirstname(){
+        $firstname = mysqli_query($this->connexion, "SELECT firstname FROM utilisateurs WHERE login = '".$_SESSION['login']."'");
+        $assoc = mysqli_fetch_assoc($firstname);
+        echo $assoc['firstname'];
+        return $assoc['firstname'];
+        
+    }
+
+    public function getLastname(){
+        $lastname = mysqli_query($this->connexion, "SELECT lastname FROM utilisateurs WHERE login = '".$_SESSION['login']."'");
+        $assoc = mysqli_fetch_assoc($lastname);
+        echo $assoc['lastname'];
+        return $assoc['lastname'];
+        
+    }
+
     
 }
 

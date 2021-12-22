@@ -14,34 +14,72 @@ if (isset($_POST['connexion'])) {
     
 }
 
-if (isset($_POST['disconnect'])) {
+if (isset($_SESSION['login'])) {
+    if (isset($_POST['disconnect'])) {
 
-    $delete_user = new User();
-    $delete_user->disconnect();
+        $delete_user = new User();
+        $delete_user->disconnect();
+    }
+    
+    if (isset($_POST['delete'])) {
+    
+        $delete_user = new User();
+        $delete_user->delete();
+    }
+    
+    if (isset($_POST['update'])) {
+    
+        $login = $_POST['newlogin'];
+        $password = $_POST['newpassword'];
+        $email = $_POST['newemail'];
+        $firstname = $_POST['newfirstname'];
+        $lastname = $_POST['newlastname'];
+    
+        $update_user = new User();
+        $update_user->update($login, $password, $email, $firstname, $lastname);
+    }
+    
+    if (isset($_POST['afficherinfos'])) {
+    
+        $afficher_user = new User();
+        $afficher_user->getAllInfos();
+    }
+    
+    if (isset($_POST['afficherlogin'])) {
+
+        $afficherlogin= new User();
+        $afficherlogin->getLogin();
+    }
+    
+    if (isset($_POST['afficheremail'])) {
+    
+        $afficheremail = new User();
+        $afficheremail->getEmail();
+    }
+    
+    if (isset($_POST['afficherfirstname'])) {
+    
+        $afficherfirstname = new User();
+        $afficherfirstname->getFirstname();
+    }
+    
+    if (isset($_POST['afficherlastname'])) {
+    
+        $afficherlastname = new User();
+        $afficherlastname->getLastname();
+    }
+
 }
 
-if (isset($_POST['delete'])) {
 
-    $delete_user = new User();
-    $delete_user->delete();
-}
 
-if (isset($_POST['update'])) {
-
-    $login = $_POST['newlogin'];
-    $password = $_POST['newpassword'];
-    $email = $_POST['newemail'];
-    $firstname = $_POST['newfirstname'];
-    $lastname = $_POST['newlastname'];
-
-    $update_user = new User();
-    $update_user->update($login, $password, $email, $firstname, $lastname);
-}
 
 
 ?>
 
 <html>
+
+    <?php if (isset($_SESSION['login'])) { echo $_SESSION['login'];}?>
 
     <!-- TEST CONNEXION  -->
     <form action="tests.php" method="post">
@@ -71,6 +109,36 @@ if (isset($_POST['update'])) {
         <input type="text" name="newfirstname" placeholder="firstname">
         <input type="text" name="newlastname" placeholder="lastname">
         <input type="submit" name="update" value="update"> 
+    </form>
+    <?php } ?>
+
+    <?php if (isset($_SESSION['login'])) { ?>
+    <form action="tests.php" method="post">
+        <input type="submit" name="afficherinfos" value="afficher"> 
+    </form>
+    <?php } ?>
+
+    <?php if (isset($_SESSION['login'])) { ?>
+    <form action="tests.php" method="post">
+        <input type="submit" name="afficherlogin" value="afficherlogin"> 
+    </form>
+    <?php } ?>
+
+    <?php if (isset($_SESSION['login'])) { ?>
+    <form action="tests.php" method="post">
+        <input type="submit" name="afficheremail" value="afficheremail"> 
+    </form>
+    <?php } ?>
+
+    <?php if (isset($_SESSION['login'])) { ?>
+    <form action="tests.php" method="post">
+        <input type="submit" name="afficherfirstname" value="afficherfirstname"> 
+    </form>
+    <?php } ?>
+
+    <?php if (isset($_SESSION['login'])) { ?>
+    <form action="tests.php" method="post">
+        <input type="submit" name="afficherlastname" value="afficherlastname"> 
     </form>
     <?php } ?>
 
