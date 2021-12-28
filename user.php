@@ -100,34 +100,42 @@ class User {
     }
 
     public function getLogin(){
-        $login = mysqli_query($this->connexion, "SELECT login FROM utilisateurs WHERE login ='".$_SESSION['login']."'");
-        $assoc = mysqli_fetch_assoc($login);
-        echo $assoc['login'];
-        return $assoc['login'];
+        $req = mysqli_query($this->connexion, "SELECT login FROM utilisateurs WHERE login ='".$_SESSION['login']."'");
+        $assoc = mysqli_fetch_assoc($req);
+
+        $login = $assoc['login'];
+        echo $login;
+        return $login;
 
     }
 
     public function getEmail(){
-        $email = mysqli_query($this->connexion, "SELECT email FROM utilisateurs WHERE login = '".$_SESSION['login']."'");
-        $assoc = mysqli_fetch_assoc($email);
-        echo $assoc['email'];
-        return $assoc['email'];
+        $req = mysqli_query($this->connexion, "SELECT email FROM utilisateurs WHERE login = '".$_SESSION['login']."'");
+        $assoc = mysqli_fetch_assoc($req);
+
+        $email = $assoc['email'];
+        echo $email;
+        return $email;
         
     }
 
     public function getFirstname(){
-        $firstname = mysqli_query($this->connexion, "SELECT firstname FROM utilisateurs WHERE login = '".$_SESSION['login']."'");
-        $assoc = mysqli_fetch_assoc($firstname);
-        echo $assoc['firstname'];
-        return $assoc['firstname'];
+        $req = mysqli_query($this->connexion, "SELECT firstname FROM utilisateurs WHERE login = '".$_SESSION['login']."'");
+        $assoc = mysqli_fetch_assoc($req);
+
+        $firstname = $assoc['firstname'];
+        echo $firstname;
+        return $firstname;
         
     }
 
     public function getLastname(){
-        $lastname = mysqli_query($this->connexion, "SELECT lastname FROM utilisateurs WHERE login = '".$_SESSION['login']."'");
-        $assoc = mysqli_fetch_assoc($lastname);
-        echo $assoc['lastname'];
-        return $assoc['lastname'];
+        $req = mysqli_query($this->connexion, "SELECT lastname FROM utilisateurs WHERE login = '".$_SESSION['login']."'");
+        $assoc = mysqli_fetch_assoc($req);
+
+        $lastname = $assoc['lastname'];
+        echo $lastname;
+        return $lastname;
         
     }
 

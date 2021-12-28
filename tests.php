@@ -79,7 +79,7 @@ if (isset($_SESSION['login'])) {
 
 <html>
 
-    <?php if (isset($_SESSION['login'])) { echo $_SESSION['login'];}?>
+    
 
     <!-- TEST CONNEXION  -->
     <form action="tests.php" method="post">
